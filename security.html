@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Choosing the right furrever friend for you!"/>
+<meta name="keywords" content="pets, cats, dogs, small animals, best for you."/>
+<link rel="stylesheet" type="text/css" href="pet-stylesheet.css">
+<title>Pets Fur You</title>
+
+<!--
+GIT 418
+Chapter 9
+Individual Case Project
+ 
+Author: Matthew Dumm
+Date: 11-1-18
+ 
+Filename: security.html
+-->
+ <script src="modernizr.custom.05819.js"></script>   
+</head>
+<!--
+The Security page features 8 properties that allow users to see how they are viewing the page. I applied the following Navigator properties: appVersion, onLine, platform and userAgent. Then I applied the following Screen properties: Width, height, availWidth, availHeight, colorDepth, and pixelDepth. I then found three links to websites that will provide the user some knowledge on web safety. They provide the user with some tips such as how to look out for phishing, how to protect your password and what sites are considered safe. -->
+<body>
+<header>
+    <h1>Pets Fur You!</h1>
+    <nav>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+            <li><a href="small-animals.html">Small-Animals</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="map.html">Map</a></li>
+        </ul>
+    </nav>
+    </header>
+        <section class="security-intro">
+       <h2>Security</h2> 
+            <article id="np">
+            <h3>Navigator Properties</h3>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+            </article>
+            <article id="sp">
+        <h3>Screen Properties</h3>    
+    <p id ="height"></p>
+    <p id ="height2"></p>
+    <p id ="width"></p>
+    <p id ="width2"></p>
+    <p id = "color-depth"></p>
+    <p id = "color-res"></p>
+            </article>
+            <article id="swl">
+            <h3>Security Webpage links</h3>
+                <div>
+                <a href ="http://www.tabush.com/blog/safe-internet-browsing-best-practices">Safe Internet Browsing:tabush.com</a>
+                    <p>The website tabush.com has an article that is titled "Safe Internet Browsing - Best Practices. It gives advice on what to look out for if it involves phishing, or internet downloads.</p>
+                </div>
+                <div>
+                <a href = "https://support.mozilla.org/en-US/kb/how-stay-safe-web">How to stay safe on the web:Mozilla support.</a>
+                    <p>Mozilla support gives tips on how to keep your system up to date as well as practices to keep your information/identity safe.</p>
+                </div>
+                <div>
+                <a href ="https://www.wikihow.com/Be-Safe-on-the-Internet">Be safe on the internet:wikihow.com</a>
+                    <p>Wiki how has an article titled "How to Be Safe on the Internet." This page gives a long detailed description of what you can do to protect your self on the web, for example: protecting your passwords, using social media/email safely, and using safe sites/networks.</p>
+                </div>
+            </article>
+        </section>    
+    </article>
+<footer id="securityfooter">
+    <section class="security-copyright">
+    <p>copyright@petsfuryou.edu</p>
+    </section>
+</footer>
+    <script>
+         document.getElementsByTagName("p")[0].innerHTML = "Web browser version: " + navigator.appVersion;
+         document.getElementsByTagName("p")[1].innerHTML = "Operating platform: " + navigator.platform;
+         document.getElementsByTagName("p")[2].innerHTML = "User agent: " + navigator.userAgent;
+        document.getElementsByTagName("p")[3].innerHTML = "If your browser has a network connection:" + navigator.onLine;
+        var size = "";
+        var h2 = "";
+        var w = "";
+        var w2 = "";
+        var cd = "";
+        var cr = "";
+size += "<p> Height of the screen display: " + screen.height + "</p>";
+        document.getElementById("height").innerHTML = size;
+h2 += "<p>Available height: " + screen.availHeight + "</p>"
+        document.getElementById("height2").innerHTML = h2;
+w += "<p> Width of the screen display: " + screen.width + "</p>";
+        document.getElementById("width").innerHTML = w;
+w2 += "<p>Available Width: " + screen.availWidth + "</p>"
+        document.getElementById("width2").innerHTML = w2;
+cd += "<p>Color depth: " + screen.colorDepth + "</p>";
+        document.getElementById("color-depth").innerHTML = cd;
+cr += "<p>Pixel Depth/ Color Resolution; " + screen.pixelDepth+"</p>";
+        document.getElementById("color-res").innerHTML = cr;
+    </script>
+</body>
+</html>

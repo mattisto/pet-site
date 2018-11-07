@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Choosing the right furrever friend for you!"/>
+<meta name="keywords" content="pets, cats, dogs, small animals, best for you."/>
+<link rel="stylesheet" type="text/css" href="pet-stylesheet.css">
+<title>Pets Fur You</title>
+
+<!--
+GIT 418
+Chapter 9
+Individual Case Project
+ 
+Author: Matthew Dumm
+Date: 11-6-18
+ 
+Filename: map.html
+-->
+   <script src="modernizr.custom.05819.js"></script> 
+</head>
+
+<body>
+<!--
+The website I created will help users that are in search of a pet. The website will give brief descriptions on types of animals. It will also give links to shelter or other sites that can provide more information on a breed. The website will give average cost estimates of materials the user will need for a certain pet. Since this is a pet friendly website I chose a pawprint/bone background. To compliment it I used a seafoam green for the header,nav,sections and footer to make it easy to read.
+-->
+<header>
+    <h1>Pets Fur You!</h1>
+    <nav>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+            <li><a href="small-animals.html">Small-Animals</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="map.html">Map</a></li>
+        </ul>
+    </nav>
+    </header>
+    <article>
+        <section class="map-pets">
+<h2>Map</h2>
+<h2>This page will display the latitude and longitude of the user.</h2>
+            
+            
+            <h2 id="location"></h2>
+            <div id = "failMsg"></div>
+            
+        </section>
+
+    </article>
+<footer>
+    <section class="copyright">
+    <p>copyright@petsfuryou.edu</p>
+    </section>
+</footer>
+    <script>
+       var locationTitle = document.getElementById("location");
+        if (navigator.geolocation) { // the if else statement will call to the fail function if the showuserposition fails
+        navigator.geolocation.getCurrentPosition(showUserPosition, fail, {timout: 1000});
+        
+        } else {
+            fail();
+        }
+            function getLocation() { // function get location usese the geolocation.getcurrentposition to calculate where the user is.
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                locationTitle.innerHTML = "Unable to process location."
+            }
+        }
+       function showUserPosition(position) { // showuserposition function, will display the latitue and longitude of the users current position.
+                          locationTitle.innerHTML = "Latitude:" +position.coords.latitude+"<br>Longitude:"+position.coords.longitude;    
+                              }
+        function fail() { // the fail function is triggerd by the if else statement if the there is a timeout a message will appear that it failed.
+            var content = document.getElementById("failMsg");
+            content.innerHTML = "<p>Geolocation unavailable at this time.</p>";
+        }
+    </script>
+</body>
+</html>
