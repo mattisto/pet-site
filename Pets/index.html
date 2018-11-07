@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Choosing the right furrever friend for you!"/>
+<meta name="keywords" content="pets, cats, dogs, small animals, best for you."/>
+<link rel="stylesheet" type="text/css" href="pet-stylesheet.css">
+<title>Pets Fur You</title>
+
+<!--
+GIT 418
+Chapter 9
+Individual Case Project
+ 
+Author: Matthew Dumm
+Date: 11-1-18
+ 
+Filename: index.html
+-->
+   <script src="modernizr.custom.05819.js"></script> 
+</head>
+
+<body>
+<!--
+The website I created will help users that are in search of a pet. The website will give brief descriptions on types of animals. It will also give links to shelter or other sites that can provide more information on a breed. The website will give average cost estimates of materials the user will need for a certain pet. Since this is a pet friendly website I chose a pawprint/bone background. To compliment it I used a seafoam green for the header,nav,sections and footer to make it easy to read.
+-->
+<header>
+    <h1>Pets Fur You!</h1>
+    <nav>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+            <li><a href="small-animals.html">Small-Animals</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="map.html">Map</a></li>
+        </ul>
+    </nav>
+    </header>
+    <article>
+        <section class="welcome-pets">
+<h2>Need help finding a pet?</h2>
+<p> Welcome to Pets Fur you! This website will give users some information that will help them decide which pet is best If you would like some personal suggestions from our team, just complete the simple form and we will get back to you promptly via e-mail with some advice on which pet is right for you.</p>
+            <form id = "submitForm" action = "results.html" novalidate = "novalidate">
+                <div id="error"></div> 
+                <fieldset id="subscribe">
+                <legend>Email subscribing</legend>        
+            <input id="subscribeFN" name="SubscribeFirstName" type="text" required="required" />
+                    <label for="subscribeLN">First Name</label>
+            <input id="subscribeLN" name="SubscribeLastName" type="text" required="required" />
+                    <label for="subscribeE">Last Name</label>
+            <input id="subscribeE" name="SubscribeEmail" type="text" required="required" />
+                    <label for="subscribeFN">Email</label>  
+                    <h4 id= "errorMessage2"></h4>
+                </fieldset>
+                <fieldset id="pets">
+                    <div id="error1"></div>
+                    <legend>What type of pet?</legend>
+ <input type="checkbox" id="pet1" name="animal" value="Dog" />
+         <label for="pet1">Dog</label>
+        <input type="checkbox" id="pet2" name="animal" value="Cat" />
+         <label for="pet2">Cat</label>
+         <input type="checkbox" id="pet3" name="animal" value="Small-Animal" />
+         <label for="pet3">SmallAnimals</label>
+         <input type="checkbox" id="pet4" name="animal" value="Lizards"/>
+         <label for="pet4">Lizard</label> 
+         <input type="checkbox" id="pet5" name="animal" value="Birds"/>
+         <label for="pet5">Birds</label> 
+        <div id="petBox">
+        <h3 id="buttonHeading">Animals selected</h3>
+            <h4 id = errorMessage>Please Select an animal.</h4>
+        
+            <ul id="animalList"></ul>
+         </div>
+                </fieldset>
+                <fieldset id="genders">
+                    <div id="error2"></div>
+                    <legend>Do you want a male or female?</legend>
+                <input type="radio" id="female" name="gender" value="m">
+                <label for="male">Male</label>
+                     <input type="radio" id="female" name="gender" value="f"/><br/>
+                <label for="female">Female</label>
+                <input type="submit" id="submit_btn" value="submit"  />
+                     <h4 id = errorMessage1>Please Select a gender.</h4>
+                </fieldset>
+            </form>
+        </section>
+<img id="dog" src="pets1.JPG" alt="pets">
+    </article>
+<footer>
+    <section class="copyright">
+    <p>copyright@petsfuryou.edu</p>
+    </section>
+</footer>
+    <script>
+       
+        var formValidity = true;
+        var animals = []; // created a global array for my Chapter 8 case project.
+        "use strict";
+                var subscribe = document.getElementById("subscribe");
+        function validateRequired() {
+        var errorMsg = document.getElementById("error");
+        var inputElements = document.querySelectorAll("#subscribe input");
+        var elementCount = inputElements.length;
+        var requiredValidity = true;
+        var textElement;
+             try {
+        for (var i = 0; i < elementCount; i++) {
+            textElement = inputElements[i];
+            if (textElement.value === "") {
+                textElement.style.background = "rgb(250,225,100)";
+            } else {
+                textElement.style.background = "white";
+            }
+        }
+        if (requiredValidity === false) {
+            throw "Please complete all fields.";
+        }
+        errorMsg.style.display = "none";
+        errorMsg.innerHTML = "";
+    }
+        
+   catch(msg) {
+        errorMsg.style.display = "block";
+        errorMsg.innerHTML = message;
+        formValidity = false;
+    }
+        }
+        // Chapter 9: For additional validation to the form I added more validation to my email. If a user were to put in an invalid email, javascript would catch it and send a message.
+        function validateEmail() {
+        var errorMsg = document.getElementById("errorMessage2");
+        var valEmail = document.getElementById("subscribeE");
+                try {
+        if (valEmail.value.search("@") === -1 || valEmail.value.lastIndexOf(".") === -1){ // this statement looks for the "@" symbol and the "." used in .com to validate that it is a valid email address. If they are not present they will throw the message "Please enter a valid email address"
+        throw "Please enter a valid email address"
+       }
+    }
+                catch(msg) { 
+        errorMsg.innerHTML = msg;
+        errorMsg.style.display = "block";
+   }
+            }
+        function validateBoxes() {
+            var fieldsetValidity = true;
+            var errorDiv = document.getElementById("error1")
+            var selectElements = document.querySelectorAll("#pets select");
+            var elementCount = selectElements.length;
+            var pets = document.getElementsByName("animal");
+            var errorMsg = document.getElementById("errorMessage")
+            var currentElement;
+            try {
+                if (!pets[0].checked && !pets[1].checked && !pets[2].checked && !pets[3].checked && !pets[4].checked) {
+                    for (i = 0; i < 5; i++) {
+                        pets[i].style.outline = "1px solid red";
+                    } 
+                    fieldsetValidity = false;
+                }else {
+                        for (i = 0; i < 5; i++) {
+                            pets[i].style.outline = "";  
+                        }
+                    }
+                if (!fieldsetValidity) {
+                    throw "Please complete form."
+            } else {
+                errorDiv.style.display = "none";
+            }
+        }
+                   catch(message) {
+                errorMsg.style.display = "block";
+                errorMsg.innerHTML = message;
+                formValidity = false;
+            }
+            
+        }
+        function validateRadio() {
+            var fieldsetValidity = true;
+            var errorDiv = document.getElementById("error2")
+            var selectElements = document.querySelectorAll("#genders select");
+            var elementCount = selectElements.length;
+            var gender = document.getElementsByName("gender");
+            var errorMsg = document.getElementById("errorMessage1")
+            var currentElement;
+            try {
+                if (!gender[0].checked && !gender[1].checked) {
+                    for (i = 0; i < 2; i++) {
+                        gender[i].style.outline = "1px solid red";
+                    } 
+                    fieldsetValidity = false;
+                }else {
+                        for (i = 0; i < 2; i++) {
+                            gender[i].style.outline = "";
+                            
+                        }
+                    }
+                if (!fieldsetValidity) {
+                    throw "Please complete form."
+            } else {
+                errorDiv.style.display = "none";
+            }
+        }
+                   catch(message) {
+                errorMsg.style.display = "block";
+                errorMsg.innerHTML = message;
+                formValidity = false;
+            }
+            
+        }
+        // Chapter 9 adding cookies to form for First Name Last Name and email.
+        // I created cookies for this particular part of the website so in the future if users wanted to send additional info they could easily because the information would be stored.
+    function firstNameCookie(){ // The firstNameCookie() function is a cookie created specifically for the first name text box.
+        document.cookie = "firstName" + document.getElementById("subscribeFN").value;
+    }
+      function displayCookie(){
+            if(document.cookie) {
+                var firstInput = document.cookie;
+                firstInput = firstInput.substing(firstInput.lastIndexOf("=") +1 );// This stores the first name inputed in the text box
+                document.getElementById("subscribeFN").value = firstInput;
+            }
+        }
+              function lastNameCookie(){// The lastNameCookie() function is a cookie created specifically for the last name text box when page is refreshed.
+        document.cookie = "lastName" + document.getElementById("subscribeLN").value;
+    }
+      function displayLastNameCookie(){
+            if(document.cookie) {
+                var lastInput = document.cookie;
+                lastInput = lastInput.substing(lastInput.lastIndexOf("=") +1 );// This stores the last name in the text box when the page is refreshed.
+                document.getElementById("subscribeLN").value = lastInput;
+            }
+        }
+              function emailCookie(){ // The emailCookie() function is a cookie created specifically for the email text box.
+        document.cookie = "eMail" + document.getElementById("subscribeE").value;
+    }
+      function displayEmailCookie(){
+            if(document.cookie) {
+                var mailInput = document.cookie;
+                mailInput = mailInput.substing(mailInput.lastIndexOf("=") +1 );// This stores the email email in the text box when page is refreshed.
+                document.getElementById("subscribeLN").value = mailInput;
+            }
+        }
+        
+        
+        function submitForm(evt) { // this prevents the form from being submitted right away, it first calls the cookie functions information that was put in the text boxes.
+            if (evt.preventDefault) {
+                evt.preventDefault();
+            } else {
+            evt.returnValue = false;
+            }
+        }
+   
+/* validate form */
+function validateForm(evt) {
+    if (evt.preventDefault) {
+        evt.preventDefault();
+    } else {
+        evt.returnValue = false;
+    }
+    formValidity = true;
+    validateRequired();
+    validateBoxes();
+    validateRadio();
+    // added an if else statement to populate a message if all fields are not filled out.
+    if (formValidity === true) {
+    document.getElementById("submitForm").submit();// Added submit form so page goes to results page when all fields are filled out correctly.
+      document.getElementById("error").innerHTML = "";
+      document.getElementById("error").style.display = "none";
+       
+      
+   } else {
+      document.getElementById("error").innerHTML = "Please fill out all fields";
+      document.getElementById("error").style.display = "block";
+      scroll(0,0);
+   }
+}
+    
+        
+        //Start of GIT 418 Individual Case Project chapter 8
+        // This project wanted us to add and take a value away from a form. Clicking on one of the animals listed the function should show the name of the item in a listed format and when I unclick the same animal that name should dissappear. 
+ function showAnimals(click) {
+    if (click === undefined) { // creating this click function gives the javascrip a source to follow when clicking one of the selected array items.
+    click = window.click
+        }
+ var callerElement = click.target || click.srcElement;
+   var animalType = callerElement.value;
+   if (callerElement.checked) { // When one of the animals from the array list is clicked is should show up in a block type display the .push adds the value to the array at the end so when an animal is clicked it will be displayed.
+       animals.push(animalType);
+      var clickedAnimals = document.createElement("li");
+     
+      document.getElementById("buttonHeading").style.display = "block"; // displays the format of the clicked array list in a block under the h3 heading.
+      document.getElementById("petBox").style.display = "block";
+        document.getElementById("animalList").appendChild(clickedAnimals);
+        clickedAnimals.innerHTML = animalType;
+   } else { 
+      var animalList = document.querySelectorAll("#animalList li");
+      for (var i = 0; i < animalList.length; i++) {
+         if (animalList[i].innerHTML === animalType) {
+             animals.pop(); // To remove the value from the arrays I used the pop() method which takes aways the value of the last item in an array. So if dogs were clicked it would show the name Dogs and then unchecking the box it will take Dogs away.
+            animalList[i].parentNode.removeChild(animalList[i]);
+        }
+      }
+   }
+        }
+        function createEventListeners() {
+            var form = document.getElementsByTagName("form")[0];
+            if (form.addEventListener) {
+                form.addEventListener ("submit", validateForm, false);
+            } else if (form.attachEvent) {
+                form.attachEvent("onsubmit", validateForm);
+            }
+            // created an eventListener for the showAnimals Function
+              var animal = document.getElementsByName("animal");
+   if (animal[0].addEventListener) {
+      for (var i = 0; i < animal.length; i++) {
+         animal[i].addEventListener("change", showAnimals, false);
+      }
+   } else if (animal[0].attachEvent) {
+      for (var i = 0; i < animal.length; i++) {
+         animal[i].attachEvent("onchange", showAnimals);
+      }
+   } // Below I added the Event Listeners for the cookies I created for project 9.
+            var firstName = document.getElementsByTagName("form")[0];
+            if (firstName.addEventListener) {
+                firstName.addEventListener("submit", submitForm, false);
+            } else if (loginForm.attachEvent) {
+                loginForm.attachEvent("onsubmit", submitForm);            
+            }
+             var lastName = document.getElementsByTagName("form")[0];
+            if (lastName.addEventListener) {
+                lastName.addEventListener("submit", submitForm, false);
+            } else if (loginForm.attachEvent) {
+                loginForm.attachEvent("onsubmit", submitForm);            
+            }
+             var emailCookie = document.getElementsByTagName("form")[0];
+            if (emailCookie.addEventListener) {
+                emailCookie.addEventListener("submit", submitForm, false);
+            } else if (loginForm.attachEvent) {
+                loginForm.attachEvent("onsubmit", submitForm);            
+            }
+            // in th event listener I added the validateEmail function into it for poject 9
+    var valEmail = document.getElementById("subscribeE");
+   if (valEmail.addEventListener) { 
+      valEmail.addEventListener("change", validateEmail, false); 
+   } else if (valEmail.attachEvent) {
+      valEmail.attachEvent("onchange", validateEmail);
+   }
+        }
+        function setCookie() {
+            displayCookie();
+            createEventListeners();
+        }
+        if (window.addEventListener) {
+            window.addEventListener("load", setCookie,false);
+        } else if (window.attachEvent) {
+            window.attachEvent("onload", setCookie);
+        }
+        
+        if (window.addEventListener) {
+            window.addEventListener("load", createEventListeners, false);
+        } else if (window.attachEvent) {
+            window.attachEvent("onload", createEventListeners);
+        }
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Choosing the right furrever friend for you!"/>
+<meta name="keywords" content="pets, cats, dogs, small animals, best for you."/>
+<link rel="stylesheet" type="text/css" href="pet-stylesheet.css">
+<title>Pets Fur You</title>
+
+<!--
+GIT 418
+Chapter 9
+Individual Case Project
+ 
+Author: Matthew Dumm
+Date: 11-1-18
+ 
+Filename: index.html
+-->
+   <script src="modernizr.custom.05819.js"></script> 
+</head>
+
+<body>
+
+<header>
+    <h1>Pets Fur You!</h1>
+    <nav>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+            <li><a href="small-animals.html">Small-Animals</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="map.html">Map</a></li>
+        </ul>
+    </nav>
+    </header>
+    <form>
+    </form>
+   <section id="calendar">
+       <div id="elapsed section">
+       <p>This page will feature a calendar event that show the user the elapsed time from the current date.</p>
+       <p id="elapsed"></p>
+       </div>
+       <form>
+          <fieldset>
+            <label for="selectDate">
+              Select a date
+            </label>
+            <input type="date" id="selectDate" />
+              <input type="submit" id="submit" value="submit"/>
+          </fieldset>
+          <label for= "timeElapsed"> Time Elapsed: </label>
+           <div id="results"></div>
+          </form>
+        </section>
+    
+<footer>
+    <section class="copyright">
+    <p>copyright@petsfuryou.edu</p>
+    </section>
+</footer>
+    
+ <script>
+     // My goal for this project was to create an alert that pops up when you select a date using the calendar tool on the website. The alert will display how much time has passed or elapsed since a select date.
+     
+     // Function calculateTime() declares the values of the years, by calculating the days, months and years. When a date is selected it interprets the difference from the today's date.
+
+		function calculateTime() {
+		var today = new Date() 
+		var providedDate = new Date(today);   // The date variable provides the date method which selects the current date and date selected to start calculations.
+		var date = document.getElementById("selectDate").value;
+		var selectedDate = new Date(date);
+        var leapYear = 0;
+		var timeDiff=providedDate.getTime()-selectedDate.getTime();
+		var days = Math.floor(timeDiff / (1000 * 3600 * 24)); // Originally this was Math.ceil(timeDiff / (1000 * 3600 * 24)).I changed this so the elapsed time would be more accurate because it was off by one day.
+		var years = Math.floor(days / 365);
+		var selectedYear=selectedDate.getFullYear();
+		var presentYear=providedDate.getFullYear()-1;
+        // Below this calculation interprets the amount of days in a month plus the inclusion of leap year.    
+        days = days%365;
+		days -= leapYear;
+		var months = Math.floor(days / 31);
+        // I had issues with getting the elapsed date to be accurate because when you clicked yesterday's date the alert would say 2 days have passed. I attempted to first fix it by adjusting the day = days%31 to days = days%31 - 1; this did work! But it only lasted for a little while because I had the same issue not to long after. 
+		days = days%31 - 1;
+            
+		if(providedDate.getMonth()>1)
+            
+		presentYear+=1;
+            
+		for(year = presentYear;year<presentYear;year++)
+{
+		if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+{
+		leapYear += 1;
+}
+}	
+		return [years,months,days];
+}  // Below is the function that triggers the alert once a date is selected in the field and the user clicks the submit button the alert will pop up with a calculation of the elapsed time.
+	document.getElementById("submit").onclick = function() {showTime()};
+		function showTime()
+{
+		var dates = calculateTime();
+		alert("Time elapsed since chosen date from calendar: "+dates[0]+" Years "+dates[1]+" Months "+dates[2]+" Days.");
+}
+     
+    
+     
+    </script>
+</body>
+</html>

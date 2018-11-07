@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Choosing the right furrever friend for you!"/>
+<meta name="keywords" content="pets, cats, dogs, small animals, best for you."/>
+<link rel="stylesheet" type="text/css" href="pet-stylesheet.css">
+<title>Pets Fur You</title>
+
+<!--
+GIT 418
+Chapter 5
+Individual Case Project
+ 
+Author: Matthew Dumm
+Date: 10-25-18
+ 
+Filename: dogs.html
+-->
+<script src="modernizr.custom.05819.js"></script>
+</head>
+<!-- 
+The dog web page will give a brief description of types of dog breeds as well as offer a link to a web-page with a list of breeds. There will also be food estimated average costs of food.
+-->
+<body>
+<header>
+    <h1>Pets Fur You!</h1>
+    <nav>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+            <li><a href="small-animals.html">Small-Animals</a></li> 
+            <li><a href="security.html">Security</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="map.html">Map</a></li>
+        </ul>
+    </nav>
+    </header>
+    <article>
+        <section class="dog-intro">
+    <h2>Dogs</h2>
+<p>This section will feature an introduction the dog page.</p>
+        </section>
+        <section class="breeds">
+            <h3>Breeds</h3>
+<p>There are a large variety of dog breeds to choose from. Knowing which one you want all depends on preferences such as size, energy level and allergies. Since this is a broad subject it is wise to do some research before you make a decision. When you have an idea of what you are looking for you can select how you want get a dog. There are many local shelters that have a wide variety of dogs from mixed breeds to pure bred. If you decide you want to adopt then select the Local Shelters below and you will be provided a link to go petfinder.com. Local shelters don't alway have puppies and if you want to start from the beginning then you can select Reputable Breeders. That button will provide you a link to look up reputable dog breeders through the akc.org site.</p>
+            <form name="s" id="dog-breeds" novalidate="novalidate">
+                <input type="radio" id="shelter" name="adopt" value="1" onchange="checkShelter()" /><br/>
+                <label for="shelter">Local Shelters</label>
+               <input type="radio" id="purebreed" name="adopt" value="6" onchange="checkShelter()"/><br/>
+                <label for ="purebreed">Reputable Breeders</label>
+            </form>
+        </section>
+        <section class="dog-food">
+            <h3>Costs</h3>
+            <p>You want whats best for your dog, but you also might want to stay within budget. When owning a dog there will be some necessary items such as food, treats, toys, grooming and flea protection. In this section we will help give you an estimation on how much you will be spending in a year with some of these combined items. This is just an estimation that may vary depending on the size, breed and individual needs of your pet.</p>
+            <!-- 
+            This form will represent a list of items for dogs that can be purchased. When you click on one of the boxes next to the item and click submit you will get a calculation of how much money you spend on that item in a year. Each value shown is how much the user will pay per month per item.
+            -->
+            <form id="costForm" novalidate="novalidate">
+          <input type="checkbox" id="pedigree" value="18.99" />
+         <label for="pedigree">Low cost dog food, 30lb average.($18.99)</label>
+        <input type="checkbox" id="purina" value="32.29" />
+         <label for="purina">Medium cost dog food 30lb average.($32.99)</label>
+         <input type="checkbox" id="blue" value="52.99" />
+         <label for="blue">High cost dog food 30lb average.($52.99)</label>
+         <input type="checkbox" id="treat" value="6.29"/>
+         <label for="treat">Monthly cost of a box of dog treats. ($6.29)</label> 
+         <input type="checkbox" id="toy" value="8.50"/>
+         <label for="toy">Monthly cost of stuffed squeaky animal.($8.50)</label>
+         <input type="checkbox" id="frisbee" value="6.96"/>
+         <label for="frisbee">Monthly cost of frisbee.($6.96)</label>
+         <input type="checkbox" id="chewrope" value="4.99"/>
+         <label for="chewrope">Monthly cost of a chew rope.($4.99)</label>
+         <input type="checkbox" id="grooming" value="50"/>
+         <label for="grooming">Monthly cost of grooming.($50)</label>
+         <input type="checkbox" id="fleatick" value="20"/>
+         <label for="fleatick">Monthly cost of flea and tick protection.($20)</label>        
+         <input type="checkbox" id="vet" value="120"/>
+         <label for="vet">Average yearly cost of annual vet visit.($120)</label>
+         <input type="submit" id="submit" value="submit" onclick="validateChoice"/>
+            </form>
+        </section>
+        <img id="puppy" src="pets.JPG" alt="puppy">
+    </article>
+    <aside>
+    <h4 id="messageHead"></h4>
+        <p id="message"></p>
+    </aside>
+
+<footer id="dog-footer">
+    <section class="dog-copyright">
+    <p>copyright@petsfuryou.edu</p>
+    </section>
+</footer>
+    <!--
+    The following script is the calculations of how much the user will spend on an item. It takes the value of the item multiplying it by 12 thus giving the value of the year for that item. If multiple items are selected it will give the total amount per year for all of those items.
+    -->
+    <script>
+        var formValidity = true;
+          "use strict";
+    function yearTotal() {
+         var costsComplete = false;
+         var breedsComplete = false; 
+        var messageHead = document.getElementById("messageHead");
+        var message = document.getElementById("message");
+        var i = 0;
+        var purina = document.getElementById("purina");
+        var blue = document.getElementById("blue");
+        var pedigree = document.getElementById("pedigree");
+        var treat = document.getElementById("treat");
+        var toy = document.getElementById("toy");
+        var frisbee = document.getElementById("frisbee");
+        var chewrope = document.getElementById("chewrope");
+        var grooming = document.getElementById("grooming");
+        var fleatick = document.getElementById("fleatick");
+        var vet = document.getElementById("vet");
+        try {
+        (purina.checked) ? (i += 32.99) : (i += 0);
+        (blue.checked) ? (i += 52.99): (i += 0);               
+        (pedigree.checked) ? (i += 18.99) : (i +=0);
+        (treat.checked) ? (i += 6.29) : (i += 0);
+        (toy.checked) ? (i += 8.50) : (i += 0);
+        (frisbee.checked) ? (i += 6.96) : (i += 0);
+        (chewrope.checked) ? (i += 4.99) : (i += 0);
+        (grooming.checked) ? (i += 50) : (i += 0);
+        (fleatick.checked) ? (i += 20) : (i += 0);       
+        (vet.checked) ? (i += 10) : (i += 0);
+        var permonthTotal = 12.0;
+        var yearlyTotal = i * permonthTotal;
+        alert("Your total annual cost is $" + yearlyTotal);
+            if (yearlyTotal === 0) {
+                throw alert("Please select an item to determine the estimated yearly cost of owning a dog.")
+            }
+
+        }
+        catch (message) {
+            message.innerHTML = "BlankField";
+            
+        }
+        finally {
+            document.getElementById("submit").value ="";
+        }
+}
+    
+        
+/*For the discussion project for Chapter 4 I attempted to implement the try and catch statements into my code for dog page form. I unfortunately was not able to acheive the end result in which an error message would pop up stating that no items have been selected. That was the first way I tried to use the statement, after that didn't work I attempted to use it for the submit function of the page. If no items were selected and the user hit the submit button an error message would pop up stating to select an item to estimate the cost for the year. This also didn't work and ended up disabling the function for generating the yearlytotals, so I commented the statement out so you can see what I attempted to do. I attempted many different variations of the try statement but none seemed to work.I finally was able to implement the try catch and finally statement within my function for yearTotal. When the submit button is clicked with a value of $0 a message will appear asking the user to please select an item. */
+ 
+          /*try {
+              for(var yearlyTotal = 0;) {
+                  if (costsForm.getElementById("submit")[yearlyTotal].checked){
+                      var costsComplete = true;
+                      messageElement.innerHTML = "";
+                      testFormCompleteness();
+                  }
+              }
+              if (j===0){
+                  throw alert ("please select an item and click submit to estimate your cost for the year.")
+              }
+              catch(message) {
+                  var costsComplete = false;
+                  messageHeadElement.innerHTML = "";
+                  messageElement.innerHTML = message;    
+              }
+          }*/
+            
+        /* In my case 2 project I provided this script to calculate year total of expenses for owning a dog. Below I had function for the submit button to pop up with an alert that showed you your total. I changed that to an Event listener which adds backward compatability to older browsers. */
+        var submitButton = document.getElementById("submit");
+        if (submitButton.addEventListener) {
+            submitButton.addEventListener("click", yearTotal, false);
+        }
+        else if (submitButton.attachEvent) {
+            submitButton.attachEvent("onclick", yearTotal);
+        }
+    /* The following if else statement is used for the radio buttons for the breeds section. If you select the Local Shelters button you will be provided a link to petfinder.com. If you elect the reputable breeders button you will be provided a link to akc.org. The reputable breeder button uses the else code.  */
+        function checkShelter() {
+            shel=s.adopt.value
+            if(shel=="1")
+                alert("You have selected Local Shelters, copy and paste provided link into your browser. https://www.petfinder.com/")
+            else
+                alert("You have selected Reputable Breed copy and paste provided link into your browser. http://marketplace.akc.org/")
+        }
+        
+    </script>
+</body>
+</html>

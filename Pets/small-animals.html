@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Choosing the right furrever friend for you!"/>
+<meta name="keywords" content="pets, cats, dogs, small animals, best for you."/>
+<link rel="stylesheet" type="text/css" href="pet-stylesheet.css">
+<title>Pets Fur You</title>
+
+<!--
+GIT 418
+Chapter 9
+Individual Case Project
+ 
+Author: Matthew Dumm
+Date: 11-1-18
+ 
+Filename: small-animals.html
+-->
+<script src="modernizr.custom.05819.js"></script>
+</head>
+<!--
+The Small-animal webpage will give descriptions of 3 types of animals, small-mammals, lizards, and fish. Each section will also provide supplies and average costs of these supplies.
+-->
+<body>
+<header>
+    <h1>Pets Fur You!</h1>
+    <nav>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cats.html">Cats</a></li>
+            <li><a href="dogs.html">Dogs</a></li>
+            <li><a href="small-animals.html">Small-Animals</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="map.html">Map</a></li>
+        </ul>
+    </nav>
+    </header>
+    <article>
+        <section class="small-intro">
+    <h2>Small Animals</h2>
+<p> This section will give an introduction the small-animal page.</p>
+        </section>
+        <section class="mammals">
+<h3>Small-Mammals</h3>
+            <p>This section will provide information to users on different types of small animals. It will also provide basic items needed to care for the small-animal.</p>
+        </section>
+        <section class="lizards">
+            <h3>Lizards</h3>
+            <p>This section will give brief description of some types of lizards. It will also provide a list of basic items needed to care for the lizard</p>
+        </section>
+        <section class="fish">
+            <h3>Fish</h3>
+            <p>This section will give a brief desction of some types of fish. It will also provide a list of basic items needed to care for the fish.</p>
+             <fieldset name="f">
+               <legend><span>How much is in your tank?</span></legend>
+               <input type="radio" id="20gal" name="fishTank" value="1"/>
+               <label for="20gal">20 Gallon Tank</label>
+               <input type="radio" id="30gal" name="fishTank" value="2"/>
+               <label for="30gal">30 Gallon Tank</label>
+
+            </fieldset>
+        </section>
+    </article>
+    <img id="lizard" src="pets4.JPG" alt="lizard">
+<footer id="small-footer">
+    <section class="small-copyright">
+    <p>copyright@petsfuryou.edu</p>
+    </section>
+</footer>
+    <script>
+    function checkTank() {
+        tank = doument.getElementsByClassName = "fishTank";
+        if(tank === 0) {
+          alert("you selected 20 gallon.")
+        }
+        else {
+            alert("you have selected 30 gallon")
+        }   
+    }
+        
+    </script>
+</body>
+</html>
